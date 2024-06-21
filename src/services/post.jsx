@@ -36,7 +36,7 @@ export const createComment = async (commentData) => {
 };
 
 export const getComments = async (postId) => {
-  const response = await fetch(`${API_URL}/comments/posts/${postId}`);
+  const response = await fetch(`${API_URL}/comments/post/${postId}`);
   if (!response.ok) {
     throw new Error('Failed to fetch comments');
   }
