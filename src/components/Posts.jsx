@@ -9,7 +9,9 @@ const HomePage = () => {
     const fetchPosts = async () => {
       try {
         const data = await getPosts();
-        setPosts(data);
+        const publishedPosts = data.filter(post => post.published); // Filter published posts
+        setPosts(publishedPosts);
+        // setPosts(data);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -22,9 +24,10 @@ const HomePage = () => {
     <div className='m-2 p-8 md:mx-36 md:my-12'>
       <h1 className='text-4xl mb-5'>Welcome to Our Blog</h1>
 
-      <p className='mb-12'>John O'Brien is a self-taught software developer from Bethlehem, Pennsylvania. In his free time he enjoys playing guitar, disc golf, and learning languages. These are his thoughts and musings. </p>
+      <p className='mb-5'>John O'Brien is a self-taught software developer from Bethlehem, Pennsylvania. In his free time he enjoys playing guitar, disc golf, and learning languages. John holds a B.A. in Economics, Philosophy, and Jazz Studies from the University of Pittsburgh. These are his random thoughts and musings. </p>
+      <a className='text-sky-500' href='http://johnobrienguitar.com'>Check out John's Music Website</a>
 
-      <h2 className='text-3xl mb-3'>Posts</h2>
+      <h2 className='text-3xl mb-3 mt-12'>Posts</h2>
     
       <ul>
         {posts.map(post => (
