@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getPost, createComment, getComments } from '../services/post';
 
 const UserPostDetail = () => {
@@ -54,7 +54,7 @@ const UserPostDetail = () => {
 
   return (
     <div className='m-2 p-8 md:mx-36'>
-      <a className='text-sky-500' href='/posts'>Back to all Posts</a>
+      <Link className='text-sky-500' to='/posts'>Back to all Posts</Link>
       <h2 className='text-4xl my-10'>{post.title}</h2>
       <p className='my-5'>{post.content}</p>
       <p>By: {post.author ? post.author.username : 'Unknown'}</p>
