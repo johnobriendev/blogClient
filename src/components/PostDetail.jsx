@@ -52,7 +52,7 @@ const UserPostDetail = () => {
   if (!post) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className='m-2 p-8'>
       <h2>{post.title}</h2>
       <p>{post.content}</p>
       <p>By: {post.author ? post.author.username : 'Unknown'}</p>
