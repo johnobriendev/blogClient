@@ -52,27 +52,31 @@ const UserPostDetail = () => {
   if (!post) return <div>Loading...</div>;
 
   return (
-    <div className='m-2 p-8'>
-      <h2>{post.title}</h2>
-      <p>{post.content}</p>
+    <div className='m-2 p-8 md:mx-36'>
+      <a className='text-sky-500' href='/posts'>Back to all Posts</a>
+      <h2 className='text-4xl my-10'>{post.title}</h2>
+      <p className='my-5'>{post.content}</p>
       <p>By: {post.author ? post.author.username : 'Unknown'}</p>
       <p>Created at: {new Date(post.createdAt).toLocaleString()}</p>
 
-      <h3>Comments</h3>
+      <h3 className='mb-5 mt-24 text-3xl'>Comments</h3>
       {comments.length === 0 ? <p>No comments yet.</p> : (
         <ul>
           {comments.map(comment => (
-            <li key={comment._id}>
-              {comment.content} - {comment.author.username} at {new Date(comment.createdAt).toLocaleString()}
+            <li className='my-4' key={comment._id}>
+              <p className=''>{comment.content}</p>
+              <p>By: {comment.author} at {new Date(comment.createdAt).toLocaleString()} </p>
+               
             </li>
           ))}
         </ul>
       )}
 
-      <h3>Leave a Comment</h3>
-      <form onSubmit={handleCommentSubmit}>
+      <h3 className='my-5 text-2xl'>Leave a Comment</h3>
+      <form className='flex flex-col items-start gap-3' onSubmit={handleCommentSubmit}>
         <label htmlFor="author">Your Name</label>
         <input
+          className='border border-black rounded'
           type="text"
           value={commentAuthor}
           onChange={(e) => setCommentAuthor(e.target.value)}
@@ -80,11 +84,12 @@ const UserPostDetail = () => {
         />
         <label htmlFor="comment">Your Comment</label>
         <textarea
+          className='border border-black rounded w-full resize-none h-24'
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           required
         />
-        <button type="submit">Submit</button>
+        <button className='border border-black rounded p-1' type="submit">Submit</button>
       </form>
     </div>
   );
