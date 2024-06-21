@@ -7,6 +7,7 @@ const UserPostDetail = () => {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const [commentAuthor, setCommentAuthor] = useState('');
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -36,8 +37,8 @@ const UserPostDetail = () => {
     try {
       const commentData = {
         content: newComment,
-        author: 'admin',  // This can be dynamic if you have user authentication
-        postId: id,
+        author: commentAuthor,  // This can be dynamic if you have user authentication
+        post: id,
       };
       await createComment(commentData);
       setNewComment('');
@@ -70,6 +71,14 @@ const UserPostDetail = () => {
 
       <h3>Leave a Comment</h3>
       <form onSubmit={handleCommentSubmit}>
+        <label htmlFor="author">Your Name</label>
+        <input
+          type="text"
+          value={commentAuthor}
+          onChange={(e) => setCommentAuthor(e.target.value)}
+          required
+        />
+        <label htmlFor="comment">Your Comment</label>
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
