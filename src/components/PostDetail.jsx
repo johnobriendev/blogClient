@@ -42,6 +42,7 @@ const UserPostDetail = () => {
       };
       await createComment(commentData);
       setNewComment('');
+      setCommentAuthor('');
       const updatedComments = await getComments(id);
       setComments(updatedComments);
     } catch (error) {
