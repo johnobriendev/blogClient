@@ -1,22 +1,22 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ClientPosts from './components/ClientPosts';
-import ClientPostDetail from './components/CientPostDetail';
+import Posts from './components/Posts';
+import PostDetail from './components/PostDetail';
 import './index.css';
 
 const router = createBrowserRouter([
 
   {
     path: '/posts',
-    element: <ClientPosts />,
+    element: <Posts />,
   },
   {
     path: '/posts/:id',
-    element: <ClientPostDetail />,
+    element: <PostDetail />,
   },
   {
     path: '*',
-    element: <ClientPosts />,
+    element: <Posts />,
   },
 ]);
 
