@@ -5,7 +5,10 @@ import PostDetail from './components/PostDetail';
 import './index.css';
 
 const router = createBrowserRouter([
-
+  {
+    path: '/',
+    element: <Posts />, // Default route to /posts
+  },
   {
     path: '/posts',
     element: <Posts />,
