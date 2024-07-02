@@ -4,6 +4,7 @@ import { getPosts } from '../services/post';
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -14,11 +15,17 @@ const HomePage = () => {
         // setPosts(data);
       } catch (error) {
         console.error('Error fetching posts:', error);
+      }finally {
+        setLoading(false)
       }
     };
 
     fetchPosts();
   }, []);
+
+  
+
+
 
   return (
     <div className='m-2 p-8 md:mx-36 md:my-12'>
@@ -28,17 +35,24 @@ const HomePage = () => {
       <a className='text-sky-500' href='http://johnobrienguitar.com'>Check out John's Music Website</a>
 
       <h2 className='text-3xl mb-3 mt-12'>Posts</h2>
-    
-      <ul>
-        {posts.map(post => (
-          <li className='flex justify-between mb-3' key={post._id}>
-            <Link className='text-xl cursor-pointer' to={`/posts/${post._id}`}>{post.title}</Link>
-            <p>{new Date(post.createdAt).toLocaleString()}</p>
-          </li>
-        ))}
-      </ul>
+
+      {loading ? (
+          <div className="text-xl">Loading posts...</div>
+        ) : (
+          <ul>
+            {posts.map(post => (
+              <li className='flex justify-between mb-3' key={post._id}>
+                <Link className='text-xl cursor-pointer' to={`/posts/${post._id}`}>{post.title}</Link>
+                <p>{new Date(post.createdAt).toLocaleString()}</p>
+              </li>
+            ))}
+         </ul>
+        )}
+
+      
     </div>
   );
 };
 
 export default HomePage;
+
